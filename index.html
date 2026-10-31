@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard K3 / HSE Proyek Konstruksi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen">
+
+    <!-- Sidebar & Content Wrapper -->
+    <div class="flex flex-col lg:flex-row min-h-screen">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full lg:w-64 bg-slate-900 text-white flex-shrink-0 p-5 flex flex-col justify-between">
+            <div>
+                <!-- Logo / Header K3 -->
+                <div class="flex items-center space-x-3 mb-8">
+                    <div class="bg-emerald-600 text-white p-2 rounded-lg">
+                        <i class="fa-solid fa-hard-hat text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight">HSE DASHBOARD</h1>
+                        <p class="text-xs text-slate-400">Sistem Monitoring K3</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="space-y-2">
+                    <a href="#" class="flex items-center space-x-3 bg-emerald-600 text-white px-4 py-3 rounded-xl font-medium transition">
+                        <i class="fa-solid fa-chart-pie w-5"></i>
+                        <span>Ringkasan Utama</span>
+                    </a>
+                    <a href="#tabel-temuan" class="flex items-center space-x-3 text-slate-300 hover:bg-slate-800 hover:text-white px-4 py-3 rounded-xl font-medium transition">
+                        <i class="fa-solid fa-triangle-exclamation w-5"></i>
+                        <span>Laporan Temuan</span>
+                    </a>
+                    <a href="#form-temuan" class="flex items-center space-x-3 text-slate-300 hover:bg-slate-800 hover:text-white px-4 py-3 rounded-xl font-medium transition">
+                        <i class="fa-solid fa-plus-circle w-5"></i>
+                        <span>Input Temuan Baru</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Footer Sidebar -->
+            <div class="pt-6 border-t border-slate-800 text-xs text-slate-400">
+                <p>Proyek: Gedung Tower A</p>
+                <p class="mt-1">Status: <span class="text-emerald-400 font-semibold">Aktif</span></p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-4 lg:p-8 overflow-y-auto">
+            
+            <!-- Top Bar Header -->
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center pb-6 border-b border-slate-200 mb-8 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">Dashboard Keselamatan & Kesehatan Kerja (K3)</h2>
+                    <p class="text-sm text-slate-500">Monitoring real-time keselamatan kerja proyek konstruksi</p>
+                </div>
+                <!-- Banner Stat Utama -->
+                <div class="flex flex-wrap gap-3">
+                    <div class="bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-xl text-center">
+                        <p class="text-xs font-semibold text-emerald-700">JAM KERJA AMAN</p>
+                        <p class="text-lg font-bold text-emerald-800">145,280 <span class="text-xs font-normal">Jam</span></p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 px-4 py-2 rounded-xl text-center">
+                        <p class="text-xs font-semibold text-blue-700">ZERO ACCIDENT</p>
+                        <p class="text-lg font-bold text-blue-800">240 <span class="text-xs font-normal">Hari</span></p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Metric KPI Cards -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-medium text-slate-400 uppercase">Tenaga Kerja Aktif</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1">342</h3>
+                        <span class="text-xs text-emerald-600 font-medium"><i class="fa-solid fa-arrow-up"></i> 100% Ter-Induksi</span>
+                    </div>
+                    <div class="p-3 bg-blue-50 text-blue-600 rounded-xl">
+                        <i class="fa-solid fa-users text-xl"></i>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-medium text-slate-400 uppercase">Kecelakaan (LTI)</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1">0</h3>
+                        <span class="text-xs text-emerald-600 font-medium"><i class="fa-solid fa-check"></i> Target Aman Reached</span>
+                    </div>
+                    <div class="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-medium text-slate-400 uppercase">Hampir Celaka (Near Miss)</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1">12</h3>
+                        <span class="text-xs text-amber-500 font-medium"><i class="fa-solid fa-clock font-bold"></i> Bulan Ini</span>
+                    </div>
+                    <div class="p-3 bg-amber-50 text-amber-500 rounded-xl">
+                        <i class="fa-solid fa-circle-exclamation text-xl"></i>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-medium text-slate-400 uppercase">Total Temuan K3</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1" id="kpi-total-temuan">28</h3>
+                        <span class="text-xs text-rose-500 font-medium"><i class="fa-solid fa-spinner"></i> 5 Perlu Follow-up</span>
+                    </div>
+                    <div class="p-3 bg-rose-50 text-rose-500 rounded-xl">
+                        <i class="fa-solid fa-clipboard-check text-xl"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Trend Incident (Line Chart) -->
+                <div class="lg:col-span-2 bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="text-base font-bold text-slate-800 mb-4">Tren Insiden & Near Miss (6 Bulan Terakhir)</h3>
+                    <div class="h-64">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Category Breakdown (Doughnut Chart) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="text-base font-bold text-slate-800 mb-4">Kategori Temuan K3</h3>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form & Table Grid Section -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Table Temuan K3 (2 Cols) -->
+                <div id="tabel-temuan" class="lg:col-span-2 bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-base font-bold text-slate-800">Daftar Laporan Temuan K3</h3>
+                        <span class="text-xs text-slate-400">Total <span id="count-temuan">3</span> Data</span>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-600">
+                            <thead class="bg-slate-50 text-slate-700 uppercase text-xs font-semibold">
+                                <tr>
+                                    <th class="p-3 rounded-l-lg">Tanggal</th>
+                                    <th class="p-3">Lokasi</th>
+                                    <th class="p-3">Deskripsi Temuan</th>
+                                    <th class="p-3">Kategori</th>
+                                    <th class="p-3 rounded-r-lg">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body" class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="p-3 font-medium text-slate-800">2026-03-28</td>
+                                    <td class="p-3">Lantai 3 - ZONA B</td>
+                                    <td class="p-3">Pekerja tidak menggunakan Harness di ketinggian.</td>
+                                    <td class="p-3"><span class="bg-red-50 text-red-600 px-2 py-1 rounded text-xs font-semibold">Unsafe Action</span></td>
+                                    <td class="p-3"><span class="bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full text-xs font-medium">Open</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium text-slate-800">2026-03-27</td>
+                                    <td class="p-3">Area Scaffolding</td>
+                                    <td class="p-3">Papan platform retak dan belum di-tagging aman.</td>
+                                    <td class="p-3"><span class="bg-orange-50 text-orange-600 px-2 py-1 rounded text-xs font-semibold">Unsafe Condition</span></td>
+                                    <td class="p-3"><span class="bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">In Progress</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium text-slate-800">2026-03-25</td>
+                                    <td class="p-3">Gudang Material</td>
+                                    <td class="p-3">Kabel las terkelupas dekat bahan mudah terbakar.</td>
+                                    <td class="p-3"><span class="bg-orange-50 text-orange-600 px-2 py-1 rounded text-xs font-semibold">Unsafe Condition</span></td>
+                                    <td class="p-3"><span class="bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-medium">Closed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Form Tambah Temuan Baru (1 Col) -->
+                <div id="form-temuan" class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="text-base font-bold text-slate-800 mb-4">Laporkan Temuan K3</h3>
+                    <form id="k3-form" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Tanggal & Waktu</label>
+                            <input type="date" id="input-tanggal" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Lokasi Proyek</label>
+                            <input type="text" id="input-lokasi" placeholder="Contoh: Area Laydown / Floor 5" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Kategori Temuan</label>
+                            <select id="input-kategori" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                <option value="Unsafe Action">Unsafe Action (Tindakan Tidak Aman)</option>
+                                <option value="Unsafe Condition">Unsafe Condition (Kondisi Tidak Aman)</option>
+                                <option value="Near Miss">Near Miss (Hampir Celaka)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Deskripsi Temuan</label>
+                            <textarea id="input-deskripsi" rows="3" placeholder="Jelaskan potensi bahaya..." required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 rounded-xl text-sm transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Kirim Laporan</span>
+                        </button>
+                    </form>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // 1. Chart Tren Insiden & Near Miss (Line Chart)
+        const ctxTrend = document.getElementById('trendChart').getContext('2d');
+        new Chart(ctxTrend, {
+            type: 'line',
+            data: {
+                labels: ['Okt', 'Nov', 'Des', 'Jan', 'Feb', 'Mar'],
+                datasets: [
+                    {
+                        label: 'Near Miss',
+                        data: [15, 12, 8, 14, 9, 12],
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Accident (LTI / First Aid)',
+                        data: [2, 1, 0, 0, 1, 0],
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // 2. Chart Kategori Temuan (Doughnut Chart)
+        const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctxCategory, {
+            type: 'doughnut',
+            data: {
+                labels: ['APD', 'Bekerja di Ketinggian', 'Kelistrikan', 'Housekeeping', 'Peralatan/Scaffolding'],
+                datasets: [{
+                    data: [12, 8, 5, 10, 6],
+                    backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6', '#ec4899']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12 } }
+                }
+            }
+        });
+
+        // 3. Form Interaktif Handlers
+        const form = document.getElementById('k3-form');
+        const tableBody = document.getElementById('table-body');
+        const countTemuan = document.getElementById('count-temuan');
+        const kpiTotal = document.getElementById('kpi-total-temuan');
+        
+        let totalTemuanCount = 28;
+        let tableRowCount = 3;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get Input Values
+            const tanggal = document.getElementById('input-tanggal').value;
+            const lokasi = document.getElementById('input-lokasi').value;
+            const kategori = document.getElementById('input-kategori').value;
+            const deskripsi = document.getElementById('input-deskripsi').value;
+
+            // Class Badge Kategori
+            let catBadge = kategori === 'Unsafe Action' 
+                ? 'bg-red-50 text-red-600' 
+                : (kategori === 'Unsafe Condition' ? 'bg-orange-50 text-orange-600' : 'bg-amber-50 text-amber-600');
+
+            // Baris Baru Tabel
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="p-3 font-medium text-slate-800">${tanggal}</td>
+                <td class="p-3">${lokasi}</td>
+                <td class="p-3">${deskripsi}</td>
+                <td class="p-3"><span class="${catBadge} px-2 py-1 rounded text-xs font-semibold">${kategori}</span></td>
+                <td class="p-3"><span class="bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full text-xs font-medium">Open</span></td>
+            `;
+
+            // Append to table
+            tableBody.prepend(newRow);
+
+            // Update Counts
+            tableRowCount++;
+            totalTemuanCount++;
+            countTemuan.innerText = tableRowCount;
+            kpiTotal.innerText = totalTemuanCount;
+
+            // Reset Form
+            form.reset();
+
+            // Alert sukses sederhana
+            alert('Laporan temuan K3 berhasil ditambahkan!');
+        });
+    </script>
+</body>
+</html>
